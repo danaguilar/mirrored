@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(Targetable))]
 public class Pushable : MonoBehaviour, IInteractable
 {
   public void Interact(Grabber player) {
@@ -13,17 +16,5 @@ public class Pushable : MonoBehaviour, IInteractable
     transform.parent = player.room.transform;
     player.StopPushing();
     player.ReleaseObject();
-  }
-
-  // Start is called before the first frame update
-  void Start()
-  {
-      
-  }
-
-  // Update is called once per frame
-  void Update()
-  {
-      
   }
 }

@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &553042729
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 553042730}
+  m_Layer: 0
+  m_Name: HoldObectLocation
+  m_TagString: Untagged
+  m_Icon: {fileID: 7148428337604731935, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &553042730
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 553042729}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1861748618574081442}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1861748618574081447
 GameObject:
   m_ObjectHideFlags: 0
@@ -28,7 +58,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 553042730}
   m_Father: {fileID: 8618009541981405927}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -95,7 +126,8 @@ GameObject:
   - component: {fileID: 4874417299909509532}
   - component: {fileID: 295305720601724753}
   - component: {fileID: 312834528}
-  - component: {fileID: 2733541896428288123}
+  - component: {fileID: 4737744718066147288}
+  - component: {fileID: 95427176}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -131,12 +163,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkingSpeed: 7.5
-  runningSpeed: 11.5
+  pushSpeed: 3
+  pushLookSpeed: 0.2
   jumpSpeed: 8
   gravity: 20
   playerCamera: {fileID: 1861748618574081445}
   lookSpeed: 0.5
   lookXLimit: 45
+  pushLookXMinMax: {x: 10, y: 60}
   canMove: 1
 --- !u!114 &295305720601724753
 MonoBehaviour:
@@ -186,7 +220,7 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2733541896428288123
+--- !u!114 &4737744718066147288
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -195,6 +229,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 4146371917263013642}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37af45cd6d522144fa2f79e4a5eef0f9, type: 3}
+  m_Script: {fileID: 11500000, guid: 1f6bd839e4fb3064492b7ae9dc989b21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HoldLocation: {fileID: 0}
+  room: {fileID: 0}
+--- !u!114 &95427176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4146371917263013642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f6bd839e4fb3064492b7ae9dc989b21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HoldLocation: {fileID: 553042730}
+  room: {fileID: 0}

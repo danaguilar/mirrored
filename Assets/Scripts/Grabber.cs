@@ -28,8 +28,9 @@ public class Grabber : MonoBehaviour
   void Start() {
     playerCameraObject = transform.GetComponentsInChildren<Camera>()[0].gameObject;
     HoldLocation = playerCameraObject.transform.GetChild(0).transform;
-    armLength = HoldLocation.position.z;
+    armLength = HoldLocation.localPosition.z;
     playerMovement = GetComponent<PlayerMovement>();
+    Debug.Log("Grabber Script Started! Arm Length is " + armLength);
   }
 
   void OnGrab() {
@@ -69,7 +70,7 @@ public class Grabber : MonoBehaviour
       Debug.DrawRay(playerCameraObject.transform.position, playerCameraObject.transform.TransformDirection(Vector3.forward) * hit.distance, Color.red);
     }
     else {
-      Debug.DrawRay(playerCameraObject.transform.position, playerCameraObject.transform.TransformDirection(Vector3.forward) * armLength, Color.white);
+      Debug.DrawRay(playerCameraObject.transform.position, playerCameraObject.transform.TransformDirection(Vector3.forward) * armLength, Color.blue);
     }
   }
 }

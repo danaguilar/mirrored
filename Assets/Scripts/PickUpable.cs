@@ -8,7 +8,12 @@ using UnityEngine;
 public class PickUpable : MonoBehaviour, IInteractable
 {
   [SerializeField] Collider goal;
+  ShardVictory shardVictory;
   bool isGoalMet = false;
+
+  void Start() {
+    shardVictory = GetComponent<ShardVictory>();
+  }
   public void Interact(Grabber player) {
     Transform holdLocation = player.HoldLocation;
     transform.parent = holdLocation;
@@ -23,8 +28,11 @@ public class PickUpable : MonoBehaviour, IInteractable
       player.ReleaseObject();
     }
     else {
-      Debug.Log("You did it!");
-      Destroy(gameObject);
+      PlayerMovement pMovement = player.GetComponent<PlayerMovement>();
+      Debug.Log("PlayerMovement Component: " + pMovement);
+      Debug.Log("Shard Victory Component: " + shardVictory);
+      shardVictory.SuccessSequence(pMovement);
+      player.ReleaseObject();
     }
   }
 

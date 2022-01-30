@@ -14,6 +14,10 @@ public class Grabber : MonoBehaviour
   GameObject playerCameraObject;
   PlayerMovement playerMovement;
 
+
+  public PlayerMovement GetPlayerMovement() {
+    return playerMovement;
+  }
   public void StartPushing() {
     playerMovement.SetIsPushing(true);
   }
@@ -31,13 +35,12 @@ public class Grabber : MonoBehaviour
     HoldLocation = playerCameraObject.transform.GetChild(0).transform;
     armLength = HoldLocation.localPosition.z + 3;
     playerMovement = GetComponent<PlayerMovement>();
-    Debug.Log("Grabber Script Started! Arm Length is " + armLength);
   }
 
   void OnGrab() {
     if(!hasGrabbedObject()) {
-      Collider foundCollider = GetColliderAtArmLength();
-      if(colliderIsInteractable(foundCollider)) {
+      if(hasTargetedObject()) {
+        grabbedObject = targetedObject.GetComponent<IInteractable>();
         grabbedObject.Interact(this);
         UnsetTarget();
       }
@@ -62,6 +65,10 @@ public class Grabber : MonoBehaviour
 
   private bool hasGrabbedObject() {
     return grabbedObject != null;
+  }
+
+  private bool hasTargetedObject() {
+    return targetedObject != null;
   }
 
   void FixedUpdate() {

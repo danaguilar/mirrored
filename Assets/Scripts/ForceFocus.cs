@@ -12,11 +12,15 @@ public class ForceFocus : MonoBehaviour
   PlayerMovement playerMovement;
   GameObject playerCameraObject;
 
-  // Start is called before the first frame update
+  [SerializeField] ShardVictory sliderTest;
+
+  void OnStopCam() {
+    sliderTest.SuccessSequence(playerMovement);
+  }
+
   void Awake() {
     playerMovement = GetComponent<PlayerMovement>();
     playerCameraObject = transform.GetComponentsInChildren<Camera>()[0].gameObject;
-    
   }
 
   public void StartFocus() {

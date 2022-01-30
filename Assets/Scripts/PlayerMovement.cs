@@ -36,6 +36,22 @@ public class PlayerMovement : MonoBehaviour
   public void SetIsPushing(bool pushing) {
     isPushing = pushing;
   }
+  
+  public void AllowMovement() {
+    float newRotation = playerCamera.transform.rotation.eulerAngles.x;
+    if(newRotation > 180) newRotation = newRotation - 360;
+    rotationX = newRotation;
+    moveValue = new Vector2();
+    lookValue = new Vector2();
+    canMove = true;
+  }
+
+  public void DenyMovement() {
+    canMove = false;
+    rotationX = 0;
+    moveValue = new Vector2();
+    lookValue = new Vector2();
+  }
 
   void Start()
   {
@@ -102,11 +118,15 @@ public class PlayerMovement : MonoBehaviour
     }
   }
   void OnMove(InputValue value) {
-    moveValue = value.Get<Vector2>();
+    if(canMove) {
+      moveValue = value.Get<Vector2>();
+    }
   }
 
   void OnLook(InputValue value) {
-    lookValue = value.Get<Vector2>();
+    if(canMove) {
+      lookValue = value.Get<Vector2>();
+    }
   }
 
   void OnStopCam() {

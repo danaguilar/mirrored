@@ -11,11 +11,16 @@ public class ShardVictory : MonoBehaviour, IVictoryCondition
   [SerializeField] float timeToPlaceShard = 1f;
 
   float cameraXAngle = 0f;
+  GameManagerLevelOne gameManager;
   float playerYAngle = 180f;
   float cameraZoomIn = 60;
   float cameraZoomOut = 60;
   PlayerMovement playerMovement;
   Camera playerCamera;
+
+  void Start() {
+    gameManager = FindObjectOfType<GameManagerLevelOne>();
+  }
 
   public void SuccessSequence(PlayerMovement pMovement) {
     playerMovement = pMovement;
@@ -43,8 +48,9 @@ public class ShardVictory : MonoBehaviour, IVictoryCondition
 
   private void DisableShard() {
     gameObject.transform.parent = parentMirror;
-    gameObject.GetComponent<Rigidbody>().isKinematic = true;
     gameObject.GetComponent<Targetable>().enabled = false;
     gameObject.GetComponent<PickUpable>().enabled = false;
+    gameManager.turnInShard();
   }
+
 }

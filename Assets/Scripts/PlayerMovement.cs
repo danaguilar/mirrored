@@ -26,6 +26,9 @@ public class PlayerMovement : MonoBehaviour
 
   bool camControlsActive = true;
   bool isPushing = false;
+  
+  float initialHitboxRad;
+  Vector3 initialHitboxCenter;
 
   private Vector2 moveValue;
   private Vector2 lookValue;
@@ -53,13 +56,15 @@ public class PlayerMovement : MonoBehaviour
     lookValue = new Vector2();
   }
 
-  void Start()
-  {
-      characterController = GetComponent<CharacterController>();
+  void Start() {
+    characterController = GetComponent<CharacterController>();
 
-      // Lock cursor
-      Cursor.lockState = CursorLockMode.Locked;
-      Cursor.visible = false;
+    // Lock cursor
+    Cursor.lockState = CursorLockMode.Locked;
+    Cursor.visible = false;
+
+    initialHitboxCenter = characterController.center;
+    initialHitboxRad = characterController.radius;
   }
 
   void Update()

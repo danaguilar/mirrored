@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(Targetable))]
 public class PickUpable : MonoBehaviour, IInteractable
 {
@@ -11,32 +10,44 @@ public class PickUpable : MonoBehaviour, IInteractable
   ShardVictory shardVictory;
   bool isGoalMet = false;
 
+  Vector3 initialPosition;
+  Vector3 initialScale;
+  Quaternion initialRotation;
+
   void Start() {
+    initialPosition = transform.position;
+    initialScale = transform.localScale;
+    initialRotation = transform.rotation;
+    
     shardVictory = GetComponent<ShardVictory>();
   }
   public void Interact(Grabber player) {
     Transform holdLocation = player.HoldLocation;
     transform.parent = holdLocation;
     transform.rotation = holdLocation.rotation * Quaternion.Euler(-90, 0, 0);
-    GetComponent<Rigidbody>().isKinematic = true;
   }
 
   public void LetGo(Grabber player) {
     if(!isGoalMet) {
       transform.parent = player.room.transform;
-      GetComponent<Rigidbody>().isKinematic = false;
+      ResetLocation();
       player.ReleaseObject();
     }
     else {
       PlayerMovement pMovement = player.GetComponent<PlayerMovement>();
-      Debug.Log("PlayerMovement Component: " + pMovement);
-      Debug.Log("Shard Victory Component: " + shardVictory);
       shardVictory.SuccessSequence(pMovement);
       player.ReleaseObject();
     }
   }
 
+  private void ResetLocation() {
+    transform.position = initialPosition;
+    transform.localScale = initialScale;
+    transform.rotation = initialRotation;
+  }
+
   private void OnTriggerEnter(Collider other) {
+    Debug.Log("Entering Trigger");
     if(other == goal) {
       Debug.Log("Goal is being met");
       isGoalMet = true;

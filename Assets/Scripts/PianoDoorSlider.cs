@@ -53,7 +53,12 @@ public class PianoDoorSlider : MonoBehaviour, IInteractable
   private void ZoomOut() {
     LeanTween.value(playerCamera.gameObject, playerCamera.fieldOfView, cameraZoomOut, timeToZoomOut)
           .setOnUpdate((float val) => {playerCamera.fieldOfView = val; })
-          .setOnComplete(() => playerMovement.AllowMovement());
+          .setOnComplete(() => DisablePiano());
+  }
+
+  private void DisablePiano() {
+    playerMovement.AllowMovement();
+    gameObject.GetComponent<BoxCollider>().enabled = false;
   }
 
   public void Interact(Grabber player) {

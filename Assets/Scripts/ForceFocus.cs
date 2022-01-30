@@ -23,6 +23,12 @@ public class ForceFocus : MonoBehaviour
     playerCameraObject = transform.GetComponentsInChildren<Camera>()[0].gameObject;
   }
 
+  public void LookAt(Transform pointToLookAt, float timeToLook) {
+    Vector3 newRotation =  Quaternion.LookRotation(pointToLookAt.position - gameObject.transform.position).eulerAngles;
+    LeanTween.rotateY(gameObject, newRotation.y,  timeToLook);
+    LeanTween.rotateX(playerCameraObject, newRotation.x,  timeToLook);
+  }
+
   public void StartFocus() {
     playerMovement.DenyMovement();
     Vector3 newRotation =  Quaternion.LookRotation(focusPoint.position - gameObject.transform.position).eulerAngles;

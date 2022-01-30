@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class GameManagerLevelTwo : MonoBehaviour
 {
+
   [SerializeField] int furnitureToMove;
+  [SerializeField] GameObject realExit;
   int furnitureScore;
   // Start is called before the first frame update
   void Start() {
@@ -14,9 +16,9 @@ public class GameManagerLevelTwo : MonoBehaviour
 
   public void scoreFurniture() {
     furnitureScore++;
+    Debug.Log("Current Score is:" + furnitureScore);
     if(furnitureScore >= furnitureToMove) {
-      // Success Sequence and load next level
+      realExit.SetActive(true);
     }
   }
-
 }

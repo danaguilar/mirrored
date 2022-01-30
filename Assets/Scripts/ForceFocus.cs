@@ -39,8 +39,4 @@ public class ForceFocus : MonoBehaviour
           .setOnUpdate((float val) => {camera.fieldOfView = val; })
           .setOnComplete(() => playerMovement.AllowMovement());
   }
-
-  void OnStopCam() {
-    StartFocus();
-  }
 }

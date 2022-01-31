@@ -26,10 +26,6 @@ public class PianoDoorSlider : MonoBehaviour, IInteractable
     playerCamera = playerMovement.playerCamera;
   }
 
-  void OnStopCam() {
-    BeginAnimations();
-  }
-
   public void BeginAnimations() {
     playerMovement.DenyMovement();
     LeanTween.move(playerMovement.gameObject, playerEndingLocation.position,  timeToGetInPosition);

@@ -6,7 +6,17 @@ ModelImporter:
   - first:
       74: -623603649343465320
     second: Scene
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: room1
+    second: {fileID: 2100000, guid: 7fab73bc00601784090330937262ce1b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: swatch-painting
+    second: {fileID: 2100000, guid: 9e67e9d4d3bf5684780de29f8bf5a2d9, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

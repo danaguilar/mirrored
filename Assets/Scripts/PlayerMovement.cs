@@ -135,6 +135,6 @@ public class PlayerMovement : MonoBehaviour
   }
 
   void OnStopCam() {
-    // camControlsActive = !camControlsActive;
+    camControlsActive = !camControlsActive;
   }
 }

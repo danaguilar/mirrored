@@ -14,10 +14,6 @@ public class ForceFocus : MonoBehaviour
 
   [SerializeField] ShardVictory sliderTest;
 
-  void OnStopCam() {
-    sliderTest.SuccessSequence(playerMovement);
-  }
-
   void Awake() {
     playerMovement = GetComponent<PlayerMovement>();
     playerCameraObject = transform.GetComponentsInChildren<Camera>()[0].gameObject;

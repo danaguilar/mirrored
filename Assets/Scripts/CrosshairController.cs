@@ -17,6 +17,9 @@ public class CrosshairController : MonoBehaviour {
       case CrosshairType.arrow:
         arrowCrosshair.enabled = true;
         break;
+      case CrosshairType.eye:
+        eyeCrosshair.enabled = true;
+        break;
     }
   }
 

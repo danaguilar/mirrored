@@ -5,7 +5,6 @@ using UnityEngine;
 public class AudioPlayer : MonoBehaviour
 {
   static AudioPlayer audioPlayer;
-  // Start is called before the first frame update
   void Awake() {
     if(audioPlayer == null) {
       audioPlayer = this;

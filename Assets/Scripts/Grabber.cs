@@ -8,9 +8,10 @@ public class Grabber : MonoBehaviour
 
   public Transform HoldLocation;
   public GameObject room;
+  [SerializeField] float extendedReachPastHoldLocation;
   float armLength;
-  IInteractable grabbedObject;
-  Targetable targetedObject;
+  public IInteractable grabbedObject;
+  public Targetable targetedObject;
   GameObject playerCameraObject;
   PlayerMovement playerMovement;
 
@@ -33,7 +34,7 @@ public class Grabber : MonoBehaviour
   void Start() {
     playerCameraObject = transform.GetComponentsInChildren<Camera>()[0].gameObject;
     HoldLocation = playerCameraObject.transform.GetChild(0).transform;
-    armLength = HoldLocation.localPosition.z + 3;
+    armLength = HoldLocation.localPosition.z + extendedReachPastHoldLocation;
     playerMovement = GetComponent<PlayerMovement>();
   }
 
@@ -73,9 +74,8 @@ public class Grabber : MonoBehaviour
 
   void FixedUpdate() {
     RaycastHit hit;
-    LayerMask layerMask = 255;
-    if (Physics.Raycast(playerCameraObject.transform.position, playerCameraObject.transform.TransformDirection(Vector3.forward), out hit, armLength, layerMask, QueryTriggerInteraction.Collide))
-    {
+    LayerMask layerMask = 1 << 8;
+    if (Physics.Raycast(playerCameraObject.transform.position, playerCameraObject.transform.TransformDirection(Vector3.forward), out hit, armLength, layerMask, QueryTriggerInteraction.Collide)) {
       SetTarget(hit.collider);
       Debug.DrawRay(playerCameraObject.transform.position, playerCameraObject.transform.TransformDirection(Vector3.forward) * hit.distance, Color.red);
     }
@@ -87,7 +87,7 @@ public class Grabber : MonoBehaviour
 
   private void UnsetTarget() {
     if(targetedObject == null) return;
-    targetedObject.DeactivateTargetedOutline();
+    targetedObject.TurnOffTargettingIndications();
     targetedObject = null;
   }
 
@@ -96,7 +96,7 @@ public class Grabber : MonoBehaviour
     if(targetedObject == newTarget || grabbedObject != null) return;
     if(newTarget != null) {
       UnsetTarget();
-      newTarget.ActivateTargetedOutline();
+      newTarget.TurnOnTargettingIndications();
       targetedObject = newTarget;
     }
   }

@@ -25,10 +25,12 @@ public class PickUpable : MonoBehaviour, IInteractable
     Transform holdLocation = player.HoldLocation;
     transform.parent = holdLocation;
     transform.rotation = holdLocation.rotation * Quaternion.Euler(-90, 0, 0);
+    transform.position = holdLocation.position;
   }
 
   public void LetGo(Grabber player) {
     if(!isGoalMet) {
+      Debug.Log($"Grabber game object: {player}", player);
       transform.parent = player.room.transform;
       ResetLocation();
       player.ReleaseObject();
@@ -47,16 +49,13 @@ public class PickUpable : MonoBehaviour, IInteractable
   }
 
   private void OnTriggerEnter(Collider other) {
-    Debug.Log("Entering Trigger");
     if(other == goal) {
-      Debug.Log("Goal is being met");
       isGoalMet = true;
     }
   }
 
   private void OnTriggerExit(Collider other) {
     if(other == goal) {
-      Debug.Log("No Wait! You were so close!");
       isGoalMet = false;
     }
   }

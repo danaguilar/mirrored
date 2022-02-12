@@ -37,7 +37,7 @@ public class ShardVictory : MonoBehaviour, IVictoryCondition
   }
 
   private void RotateShard() {
-    LeanTween.rotate(gameObject, new Vector3(-89.98f, 0,0), timeToRotateShard).setOnComplete(() => PlaceShard()) ;
+    LeanTween.rotate(gameObject, new Vector3(0, -90, 90), timeToRotateShard).setOnComplete(() => PlaceShard()) ;
   }
 
   private void PlaceShard() {

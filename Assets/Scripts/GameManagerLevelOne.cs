@@ -6,7 +6,7 @@ public class GameManagerLevelOne : MonoBehaviour
 {
   [SerializeField] int shardsToTurnIn;
   [SerializeField] EndLevelCinematic endLevelCinematic;
-  int shardsCurrentlyTurnedIn = 0;
+  public int shardsCurrentlyTurnedIn = 0;
   PlayerMovement player;
   // Start is called before the first frame update
   void Start() {

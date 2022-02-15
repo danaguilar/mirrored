@@ -15,7 +15,6 @@ public class Grabber : MonoBehaviour
   GameObject playerCameraObject;
   PlayerMovement playerMovement;
 
-
   public PlayerMovement GetPlayerMovement() {
     return playerMovement;
   }
@@ -29,6 +28,12 @@ public class Grabber : MonoBehaviour
 
   public void ReleaseObject() {
     grabbedObject = null;
+  }
+
+  public bool heldObjectIsColliding() {
+    if(!hasGrabbedObject()) return false;
+    Debug.Log($"Is colliding is {grabbedObject.isColliding()}");
+    return grabbedObject.isColliding();
   }
 
   void Start() {

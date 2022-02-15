@@ -57,7 +57,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1861748618574081447}
   m_LocalRotation: {x: 0.15962273, y: 0, z: 0, w: 0.9871781}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: -0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 553042730}
@@ -159,8 +159,8 @@ GameObject:
   - component: {fileID: 4874417299909509532}
   - component: {fileID: 295305720601724753}
   - component: {fileID: 312834528}
-  - component: {fileID: 4737744718066147288}
   - component: {fileID: 95427176}
+  - component: {fileID: 5997916593045144991}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -253,22 +253,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4737744718066147288
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4146371917263013642}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f6bd839e4fb3064492b7ae9dc989b21, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  HoldLocation: {fileID: 553042730}
-  room: {fileID: 0}
-  extendedReachPastHoldLocation: 3
-  targetedObject: {fileID: 0}
 --- !u!114 &95427176
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -285,3 +269,20 @@ MonoBehaviour:
   room: {fileID: 0}
   extendedReachPastHoldLocation: 0
   targetedObject: {fileID: 0}
+--- !u!114 &5997916593045144991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4146371917263013642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 305b80a332986c74f8c56559131bb971, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeToFocus: 1
+  timeToZoom: 0.5
+  zoomAmmount: 10
+  focusPoint: {fileID: 0}
+  sliderTest: {fileID: 0}

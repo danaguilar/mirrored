@@ -17,10 +17,12 @@ public class PlayerMovement : MonoBehaviour
   public Camera playerCamera;
   public float lookSpeed = 2.0f;
   public float lookXLimit = 45.0f;
+  public PhysicsScene physicsScene;
 
   public Vector2 pushLookXMinMax = new Vector2();
 
   CharacterController characterController;
+  Grabber grabber;
   Vector3 moveDirection = Vector3.zero;
   float rotationX = 0;
 
@@ -32,6 +34,13 @@ public class PlayerMovement : MonoBehaviour
 
   private Vector2 moveValue;
   private Vector2 lookValue;
+
+  private Vector3 cachedPosition;
+  private Vector3 lastGoodPosition;
+
+  private Quaternion  cachedRotation;
+  private Quaternion lastGoodRotation;
+  private float timer;
 
   [HideInInspector]
   public bool canMove = true;
@@ -58,6 +67,7 @@ public class PlayerMovement : MonoBehaviour
 
   void Start() {
     characterController = GetComponent<CharacterController>();
+    grabber = GetComponent<Grabber>();
 
     // Lock cursor
     Cursor.lockState = CursorLockMode.Locked;
@@ -67,14 +77,36 @@ public class PlayerMovement : MonoBehaviour
     initialHitboxRad = characterController.radius;
   }
 
-  void Update()
-  {
-    if(isPushing) {
-      Push();
+  // void FixedUpdate() {
+    // if(!grabber.heldObjectIsColliding()) {
+    //   lastGoodPosition = cachedPosition;
+    //   lastGoodRotation = cachedRotation;
+    // }
+    // else {
+    //   this.transform.position = lastGoodPosition;
+    //   this.transform.rotation = lastGoodRotation;
+    // }
+    // cachedPosition = this.transform.position;
+    // cachedRotation = this.transform.rotation;
+  // }
+
+  void FixedUpdate() {
+    if(!grabber.heldObjectIsColliding()) {
+      lastGoodPosition = cachedPosition;
+      lastGoodRotation = cachedRotation;
+      if(isPushing) {
+        Push();
+      }
+      else {
+        Walk();
+      }
     }
     else {
-      Walk();
+      this.transform.position = lastGoodPosition;
+      this.transform.rotation = lastGoodRotation;
     }
+    cachedPosition = this.transform.position;
+    cachedRotation = this.transform.rotation;
   }
 
   void Push() {
@@ -86,7 +118,6 @@ public class PlayerMovement : MonoBehaviour
     moveDirection = (forward * curSpeedX) + (right * curSpeedY);
     characterController.Move(moveDirection * Time.deltaTime);
     transform.rotation *= Quaternion.Euler(0, lookValue.x * pushLookSpeed, 0);
-
     rotationX += -lookValue.y * lookSpeed;
     rotationX = Mathf.Clamp(rotationX, pushLookXMinMax.x, pushLookXMinMax.y);
     playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);

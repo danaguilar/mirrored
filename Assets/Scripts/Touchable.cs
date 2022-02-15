@@ -15,6 +15,8 @@ public class Touchable : MonoBehaviour, IInteractable
     curtainVictory.SuccessSequence(player.GetPlayerMovement());
   }
 
-  public void LetGo(Grabber player) {
+  public void LetGo(Grabber player) { }
+  public bool isColliding() {
+    return false;
   }
 }

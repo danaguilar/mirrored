@@ -65,4 +65,8 @@ public class PianoDoorSlider : MonoBehaviour, IInteractable
 
   public void LetGo(Grabber player)
   { }
+
+  public bool isColliding() {
+    return false;
+  }
 }

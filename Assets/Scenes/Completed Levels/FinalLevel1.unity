@@ -1606,7 +1606,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8618009541981405927, guid: 14ce29ad9370598418c3940727a0d280, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.757
+      value: -2.03
       objectReference: {fileID: 0}
     - target: {fileID: 8618009541981405927, guid: 14ce29ad9370598418c3940727a0d280, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1614,7 +1614,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8618009541981405927, guid: 14ce29ad9370598418c3940727a0d280, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.863
+      value: -3.1
       objectReference: {fileID: 0}
     - target: {fileID: 8618009541981405927, guid: 14ce29ad9370598418c3940727a0d280, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2049,7 +2049,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fadePanel: {fileID: 1989573643}
   timeToFade: 1
-  nameOfLevelToLoad: 
+  nameOfLevelToLoad: FinalLevel1
 --- !u!4 &1379436199
 Transform:
   m_ObjectHideFlags: 0
@@ -3756,8 +3756,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.6933374, y: 1.7829804, z: 2.1157985}
-  m_Center: {x: 0, y: -0.47388625, z: 0}
+  m_Size: {x: 3.6933374, y: 3.1671228, z: 2.3212395}
+  m_Center: {x: 0, y: 0.010616779, z: 0}
 --- !u!1 &2134590570
 GameObject:
   m_ObjectHideFlags: 0
@@ -5898,7 +5898,6 @@ GameObject:
   - component: {fileID: 2972263833257799781}
   - component: {fileID: 2972263833257799785}
   - component: {fileID: 2972263833257799784}
-  - component: {fileID: 2972263833257799783}
   - component: {fileID: 2972263833257799782}
   - component: {fileID: 2972263833257799786}
   m_Layer: 8
@@ -5919,8 +5918,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.7621416, y: 0.032550123, z: 0.3721943}
-  m_Center: {x: 0.060551718, y: -0.0012164488, z: -0.01465898}
+  m_Size: {x: 1.179256, y: 0.51134586, z: 0.7513651}
+  m_Center: {x: 0.060551714, y: -0.0012164584, z: -0.020189896}
 --- !u!114 &2972263833257799782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5939,24 +5938,6 @@ MonoBehaviour:
   timeToGetInPosition: 1
   timeToRotateShard: 1
   timeToPlaceShard: 1
---- !u!114 &2972263833257799783
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2972263833257799780}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineMode: 0
-  outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 2
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []
 --- !u!114 &2972263833257799784
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5982,10 +5963,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43903ddef8066df42a41bdf864faa4ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineWidth: 4
-  outlineColor: {r: 0, g: 1, b: 1, a: 1}
   chType: 0
-  highlightMaterial: {fileID: 0}
+  highlightMaterial: {fileID: 2100000, guid: 4b1cfd97d066d1748905efdaa666c43f, type: 2}
+  originalMaterial: {fileID: 0}
+  useOutline: 0
 --- !u!54 &2972263833257799786
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6582,7 +6563,6 @@ GameObject:
   - component: {fileID: 3499163047285061388}
   - component: {fileID: 3499163047285061390}
   - component: {fileID: 3499163047285061389}
-  - component: {fileID: 3499163047285061391}
   m_Layer: 8
   m_Name: player-piano-proxy
   m_TagString: Untagged
@@ -6615,10 +6595,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43903ddef8066df42a41bdf864faa4ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineWidth: 10
-  outlineColor: {r: 0, g: 1, b: 1, a: 1}
   chType: 1
   highlightMaterial: {fileID: 2100000, guid: 4b1cfd97d066d1748905efdaa666c43f, type: 2}
+  originalMaterial: {fileID: 0}
+  useOutline: 0
 --- !u!114 &3499163047285061390
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6640,24 +6620,6 @@ MonoBehaviour:
   timeToZoomOut: 1
   playerMovement: {fileID: 1999067228}
   playerEndingLocation: {fileID: 1305750429}
---- !u!114 &3499163047285061391
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3499163047285061387}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineMode: 0
-  outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 2
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []
 --- !u!33 &3511568734208096393
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -9299,7 +9261,6 @@ GameObject:
   - component: {fileID: 6831724918085784215}
   - component: {fileID: 6831724918085784219}
   - component: {fileID: 6831724918085784218}
-  - component: {fileID: 6831724918085784217}
   - component: {fileID: 6831724918085784216}
   - component: {fileID: 6831724918085784220}
   m_Layer: 8
@@ -9340,24 +9301,6 @@ MonoBehaviour:
   timeToGetInPosition: 1
   timeToRotateShard: 1
   timeToPlaceShard: 1
---- !u!114 &6831724918085784217
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6831724918085784214}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineMode: 0
-  outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 2
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []
 --- !u!114 &6831724918085784218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9383,10 +9326,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43903ddef8066df42a41bdf864faa4ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineWidth: 4
-  outlineColor: {r: 0, g: 1, b: 1, a: 1}
   chType: 0
-  highlightMaterial: {fileID: 0}
+  highlightMaterial: {fileID: 2100000, guid: 4b1cfd97d066d1748905efdaa666c43f, type: 2}
+  originalMaterial: {fileID: 0}
+  useOutline: 0
 --- !u!54 &6831724918085784220
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -9771,7 +9714,6 @@ GameObject:
   - component: {fileID: 7238096735801236890}
   - component: {fileID: 7238096735801236894}
   - component: {fileID: 7238096735801236893}
-  - component: {fileID: 7238096735801236892}
   - component: {fileID: 7238096735801236891}
   - component: {fileID: 7238096735801236895}
   m_Layer: 8
@@ -9812,24 +9754,6 @@ MonoBehaviour:
   timeToGetInPosition: 1
   timeToRotateShard: 1
   timeToPlaceShard: 1
---- !u!114 &7238096735801236892
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7238096735801236889}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineMode: 0
-  outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 2
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []
 --- !u!114 &7238096735801236893
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9855,10 +9779,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43903ddef8066df42a41bdf864faa4ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineWidth: 4
-  outlineColor: {r: 0, g: 1, b: 1, a: 1}
   chType: 0
-  highlightMaterial: {fileID: 0}
+  highlightMaterial: {fileID: 2100000, guid: 4b1cfd97d066d1748905efdaa666c43f, type: 2}
+  originalMaterial: {fileID: 0}
+  useOutline: 0
 --- !u!54 &7238096735801236895
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -11109,7 +11033,6 @@ GameObject:
   - component: {fileID: 9116055107698252545}
   - component: {fileID: 9116055107698252549}
   - component: {fileID: 9116055107698252548}
-  - component: {fileID: 9116055107698252547}
   - component: {fileID: 9116055107698252546}
   - component: {fileID: 9116055107698252550}
   m_Layer: 8
@@ -11130,8 +11053,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.53539425, y: 0.032550126, z: 0.5543405}
-  m_Center: {x: 0.057556413, y: -0.00043433468, z: -0.009670004}
+  m_Size: {x: 1.154888, y: 0.89523745, z: 1.3473527}
+  m_Center: {x: 0.057556435, y: -0.00043433488, z: -0.0096699875}
 --- !u!114 &9116055107698252546
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11150,24 +11073,6 @@ MonoBehaviour:
   timeToGetInPosition: 1
   timeToRotateShard: 1
   timeToPlaceShard: 1
---- !u!114 &9116055107698252547
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9116055107698252544}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineMode: 0
-  outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 2
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []
 --- !u!114 &9116055107698252548
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11193,10 +11098,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43903ddef8066df42a41bdf864faa4ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineWidth: 4
-  outlineColor: {r: 0, g: 1, b: 1, a: 1}
   chType: 0
-  highlightMaterial: {fileID: 0}
+  highlightMaterial: {fileID: 2100000, guid: 4b1cfd97d066d1748905efdaa666c43f, type: 2}
+  originalMaterial: {fileID: 0}
+  useOutline: 0
 --- !u!54 &9116055107698252550
 Rigidbody:
   m_ObjectHideFlags: 0

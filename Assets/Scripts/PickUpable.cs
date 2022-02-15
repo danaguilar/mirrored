@@ -41,6 +41,10 @@ public class PickUpable : MonoBehaviour, IInteractable
       player.ReleaseObject();
     }
   }
+  
+  public bool isColliding() {
+    return false;
+  }
 
   private void ResetLocation() {
     transform.position = initialPosition;

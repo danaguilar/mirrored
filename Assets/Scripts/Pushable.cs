@@ -8,18 +8,21 @@ using UnityEngine;
 public class Pushable : MonoBehaviour, IInteractable
 {
   FurnitureVictory furnitureVictory;
-  public bool currentlyColliding;
 
   void Start() {
     furnitureVictory = GetComponent<FurnitureVictory>();
   }
 
   private void OnTriggerEnter(Collider other) {
-    if(other.tag != "Floor") currentlyColliding = true;
+    if(other.tag != "Floor") {
+      // for future furniture collision
+    }
   }
 
    private void OnTriggerExit(Collider other) {
-    if(other.tag != "Floor") currentlyColliding = false;
+    if(other.tag != "Floor") {
+      // for future furniture collision
+    } 
   }
 
   public void Interact(Grabber player) {
@@ -31,10 +34,10 @@ public class Pushable : MonoBehaviour, IInteractable
     transform.parent = player.room.transform;
     player.StopPushing();
     player.ReleaseObject();
-    // if(furnitureVictory.isWithinWinCondition(transform)) furnitureVictory.SuccessSequence(player.GetPlayerMovement());
+    if(furnitureVictory.isWithinWinCondition(transform)) furnitureVictory.SuccessSequence(player.GetPlayerMovement());
   }
 
   public bool isColliding() {
-    return currentlyColliding;
+    return false;
   }
 }

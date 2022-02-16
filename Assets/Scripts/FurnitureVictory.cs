@@ -19,7 +19,7 @@ public class FurnitureVictory : MonoBehaviour, IVictoryCondition
     ForceFocus forceFocus = playerMovement.GetComponent<ForceFocus>();
     playerMovement.DenyMovement();
     LeanTween.rotate(gameObject, mirroredFurniture.rotation.eulerAngles, transitionTime);
-    forceFocus.LookAt(gameObject.transform, transitionTime);
+    forceFocus.LookAt(mirroredFurniture.transform, transitionTime);
     LeanTween.move(gameObject, mirroredFurniture.position, transitionTime).setOnComplete(() => DisableFurnature(playerMovement));
   }
 

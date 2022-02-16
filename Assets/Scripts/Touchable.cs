@@ -4,18 +4,20 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(Targetable))]
+[RequireComponent(typeof(IVictoryCondition))]
 public class Touchable : MonoBehaviour, IInteractable
 {
-  CurtainVictory curtainVictory;
+  IVictoryCondition victoryCondition;
 
   void Start() {
-    curtainVictory = GetComponent<CurtainVictory>();
+    victoryCondition = GetComponent<CurtainVictory>();
   }
   public void Interact(Grabber player) {
-    curtainVictory.SuccessSequence(player.GetPlayerMovement());
+    victoryCondition.SuccessSequence(player.GetPlayerMovement());
   }
 
   public void LetGo(Grabber player) { }
+
   public bool isColliding() {
     return false;
   }

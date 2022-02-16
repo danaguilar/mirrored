@@ -161,6 +161,7 @@ GameObject:
   - component: {fileID: 312834528}
   - component: {fileID: 95427176}
   - component: {fileID: 5997916593045144991}
+  - component: {fileID: 2080711110}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -201,7 +202,7 @@ MonoBehaviour:
   jumpSpeed: 8
   gravity: 20
   playerCamera: {fileID: 1861748618574081445}
-  lookSpeed: 0.2
+  lookSpeed: 0.4
   lookXLimit: 45
   pushLookXMinMax: {x: 10, y: 60}
   canMove: 1
@@ -286,3 +287,15 @@ MonoBehaviour:
   zoomAmmount: 10
   focusPoint: {fileID: 0}
   sliderTest: {fileID: 0}
+--- !u!114 &2080711110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4146371917263013642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0857622887b4a545ae814e11a11199d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

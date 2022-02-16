@@ -29,9 +29,6 @@ public class PlayerMovement : MonoBehaviour
   bool camControlsActive = true;
   bool isPushing = false;
   
-  float initialHitboxRad;
-  Vector3 initialHitboxCenter;
-
   private Vector2 moveValue;
   private Vector2 lookValue;
 
@@ -72,41 +69,15 @@ public class PlayerMovement : MonoBehaviour
     // Lock cursor
     Cursor.lockState = CursorLockMode.Locked;
     Cursor.visible = false;
-
-    initialHitboxCenter = characterController.center;
-    initialHitboxRad = characterController.radius;
   }
 
-  // void FixedUpdate() {
-    // if(!grabber.heldObjectIsColliding()) {
-    //   lastGoodPosition = cachedPosition;
-    //   lastGoodRotation = cachedRotation;
-    // }
-    // else {
-    //   this.transform.position = lastGoodPosition;
-    //   this.transform.rotation = lastGoodRotation;
-    // }
-    // cachedPosition = this.transform.position;
-    // cachedRotation = this.transform.rotation;
-  // }
-
-  void FixedUpdate() {
-    if(!grabber.heldObjectIsColliding()) {
-      lastGoodPosition = cachedPosition;
-      lastGoodRotation = cachedRotation;
-      if(isPushing) {
-        Push();
-      }
-      else {
-        Walk();
-      }
+  void Update() {
+    if(isPushing) {
+      Push();
     }
     else {
-      this.transform.position = lastGoodPosition;
-      this.transform.rotation = lastGoodRotation;
+      Walk();
     }
-    cachedPosition = this.transform.position;
-    cachedRotation = this.transform.rotation;
   }
 
   void Push() {

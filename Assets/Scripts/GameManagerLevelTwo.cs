@@ -6,19 +6,19 @@ public class GameManagerLevelTwo : MonoBehaviour
 {
 
   [SerializeField] int furnitureToMove;
-  [SerializeField] GameObject realExit;
-  int furnitureScore;
+  [SerializeField] EndLevelCinematic endLevelCinematic;
+  PlayerMovement player;
+  int furnitureScore = 0;
   // Start is called before the first frame update
   void Start() {
-    furnitureScore = 0;
-      
+    player = FindObjectOfType<PlayerMovement>();
   }
 
   public void scoreFurniture() {
     furnitureScore++;
     Debug.Log("Current Score is:" + furnitureScore);
     if(furnitureScore >= furnitureToMove) {
-      realExit.SetActive(true);
+      endLevelCinematic.SuccessSequence(player);
     }
   }
 }

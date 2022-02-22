@@ -6,17 +6,21 @@ public class MusicPlayer : MonoBehaviour {
   [SerializeField] AudioClip initialMusic;
   [SerializeField] AudioClip loopedMusic;
   AudioSource audioSource;
-  bool keepPlaying = true;
+  bool keepPlaying = false;
 
-  public void stopMusic() {
+  public void StopMusic() {
     audioSource.Stop();
     keepPlaying = false;
+  }
+
+  public void StartMusic() {
+    audioSource.Play();
+    keepPlaying = true;
   }
 
   void Start() {
     audioSource = GetComponent<AudioSource>();
     audioSource.clip = initialMusic;
-    audioSource.Play();
   }
 
   void Update() {

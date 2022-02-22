@@ -32,7 +32,6 @@ public class Grabber : MonoBehaviour
 
   public bool heldObjectIsColliding() {
     if(!hasGrabbedObject()) return false;
-    Debug.Log($"Is colliding is {grabbedObject.isColliding()}");
     return grabbedObject.isColliding();
   }
 

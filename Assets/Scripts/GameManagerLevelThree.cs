@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,19 +6,39 @@ using UnityEngine;
 public class GameManagerLevelThree : MonoBehaviour
 {
 
-  [SerializeField] int clues;
+  [Header("Components")]
+  RenderTexture clueRenderTexture;
+
+  [Header("Clues")]
+  public TextClue activeClue;
+  [SerializeField] List<TextClue> clueList = new List<TextClue>();
+  [SerializeField] MeshRenderer clueCamRenderer;
   PlayerMovement player;
-  public int clueScore = 0;
-  // Start is called before the first frame update
+  ExitPortal exitPortal;
+
   void Start() {
     player = FindObjectOfType<PlayerMovement>();
+    exitPortal = FindObjectOfType<ExitPortal>();
+    clueRenderTexture = (RenderTexture)clueCamRenderer.material.mainTexture;
+    setupNewClue();
+  }
+
+  private void setupNewClue() {
+    activeClue = clueList[UnityEngine.Random.Range(0, clueList.Count)];
+    hideAllInactiveClues();
+  }
+
+  private void hideAllInactiveClues() {
+    clueList.ForEach((clue) => clue.SetAsCurrentClue(clue == activeClue));
   }
 
   public void scoreClue() {
-    clueScore++;
-    Debug.Log("Current Score is:" + clueScore);
-    if(clueScore >= clues) {
-      // Active level 4 portal
+    clueList.Remove(activeClue);
+    if(clueList.Count == 0) {
+      exitPortal.setTargetable();
+    }
+    else {
+      setupNewClue();
     }
   }
 }

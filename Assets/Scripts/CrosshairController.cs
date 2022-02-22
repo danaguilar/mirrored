@@ -5,11 +5,13 @@ using UnityEngine.UI;
 
 public enum CrosshairType {
   arrow,
-  eye
+  eye,
+  dArrow
 }
 public class CrosshairController : MonoBehaviour {
   [SerializeField] RawImage arrowCrosshair;
   [SerializeField] RawImage eyeCrosshair;
+  [SerializeField] RawImage downArrowCorsshair;
 
   public void showCrosshair(CrosshairType type) {
     hideAllCrosshairs();
@@ -20,12 +22,16 @@ public class CrosshairController : MonoBehaviour {
       case CrosshairType.eye:
         eyeCrosshair.enabled = true;
         break;
+      case CrosshairType.dArrow:
+        downArrowCorsshair.enabled = true;
+        break;
     }
   }
 
   public void hideAllCrosshairs() {
     arrowCrosshair.enabled = false;
     eyeCrosshair.enabled = false;
+    downArrowCorsshair.enabled = false;
 
   }
 

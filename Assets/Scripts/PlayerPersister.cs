@@ -11,7 +11,7 @@ public class PlayerPersister : MonoBehaviour
       DontDestroyOnLoad(persister);
     }
     else{ 
-      Destroy(this);
+      Destroy(gameObject);
     }
   }
 }

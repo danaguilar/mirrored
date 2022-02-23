@@ -8,14 +8,14 @@ using System;
 public class LevelTwoEndingCinematic : EndLevelCinematic
 {
   [SerializeField] Transform unlockedDoorLocation;
-  [SerializeField] float transitionTime;
+  [SerializeField] AudioClip openningDoorAudioClip;
   [SerializeField] string nameOfLevelToLoad;
   public override void  SuccessSequence(PlayerMovement playerMovement) {
     ForceFocus forceFocus = playerMovement.GetComponent<ForceFocus>();
     playerMovement.DenyMovement();
-    // Play Unlock Sound
-    forceFocus.LookAt(unlockedDoorLocation, transitionTime);
-    LeanTween.move(gameObject, gameObject.transform, transitionTime).setOnComplete(() => LoadNextLevel());
+    AudioSource.PlayClipAtPoint(openningDoorAudioClip, unlockedDoorLocation.position);
+    forceFocus.LookAt(unlockedDoorLocation, openningDoorAudioClip.length, LeanTweenType.easeOutQuint);
+    LeanTween.move(gameObject, gameObject.transform, openningDoorAudioClip.length).setOnComplete(() => LoadNextLevel());
   }
 
   private void LoadNextLevel() {

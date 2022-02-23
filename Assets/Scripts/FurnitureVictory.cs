@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class FurnitureVictory : MonoBehaviour, IVictoryCondition
 {
   [SerializeField] Transform mirroredFurniture;
@@ -10,17 +11,21 @@ public class FurnitureVictory : MonoBehaviour, IVictoryCondition
   [SerializeField] float rotationGrace = 180f;
   [SerializeField] float transitionTime = 1f;
   GameManagerLevelTwo gameManager;
+  AudioSource victoryAudio;
 
 
   void Start() {
     gameManager = FindObjectOfType<GameManagerLevelTwo>();
+    victoryAudio = GetComponent<AudioSource>();
   }
+
   public void SuccessSequence(PlayerMovement playerMovement) {
     ForceFocus forceFocus = playerMovement.GetComponent<ForceFocus>();
+    victoryAudio.Play();
     playerMovement.DenyMovement();
-    LeanTween.rotate(gameObject, mirroredFurniture.rotation.eulerAngles, transitionTime);
-    forceFocus.LookAt(mirroredFurniture.transform, transitionTime);
-    LeanTween.move(gameObject, mirroredFurniture.position, transitionTime).setOnComplete(() => DisableFurnature(playerMovement));
+    LeanTween.rotate(gameObject, mirroredFurniture.rotation.eulerAngles, victoryAudio.clip.length);
+    forceFocus.LookAt(mirroredFurniture.transform, victoryAudio.clip.length);
+    LeanTween.move(gameObject, mirroredFurniture.position, victoryAudio.clip.length).setOnComplete(() => DisableFurnature(playerMovement));
   }
 
   private void DisableFurnature(PlayerMovement playerMovement) {

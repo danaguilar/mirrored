@@ -38,13 +38,20 @@ public class PlayerMovement : MonoBehaviour
 
   private Quaternion  cachedRotation;
   private Quaternion lastGoodRotation;
+  private AudioClip walkingSFXClip;
   private float timer;
 
   [HideInInspector]
   public bool canMove = true;
 
-  public void SetIsPushing(bool pushing) {
+  public void SetIsPushing(bool pushing, AudioClip pushingAudio = null) {
     isPushing = pushing;
+    if(pushingAudio != null) {
+      footstepSFX.clip = pushingAudio;
+    }
+    else {
+      footstepSFX.clip = walkingSFXClip;
+    }
   }
   
   public void AllowMovement() {
@@ -66,6 +73,7 @@ public class PlayerMovement : MonoBehaviour
   void Start() {
     characterController = GetComponent<CharacterController>();
     grabber = GetComponent<Grabber>();
+    walkingSFXClip = footstepSFX.clip;
 
     // Lock cursor
     Cursor.lockState = CursorLockMode.Locked;

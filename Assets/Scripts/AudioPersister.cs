@@ -11,7 +11,7 @@ public class AudioPersister : MonoBehaviour
       DontDestroyOnLoad(persister);
     }
     else{ 
-      Destroy(this);
+      Destroy(gameObject);
     }
   }
 }

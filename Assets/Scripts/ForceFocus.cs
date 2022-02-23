@@ -19,10 +19,10 @@ public class ForceFocus : MonoBehaviour
     playerCameraObject = transform.GetComponentsInChildren<Camera>()[0].gameObject;
   }
 
-  public void LookAt(Transform pointToLookAt, float timeToLook) {
+  public void LookAt(Transform pointToLookAt, float timeToLook, LeanTweenType easeType = LeanTweenType.linear) {
     Vector3 newRotation =  Quaternion.LookRotation(pointToLookAt.position - gameObject.transform.position).eulerAngles;
-    LeanTween.rotateY(gameObject, newRotation.y,  timeToLook);
-    LeanTween.rotateX(playerCameraObject, newRotation.x,  timeToLook);
+    LeanTween.rotateY(gameObject, newRotation.y,  timeToLook).setEase(easeType);
+    LeanTween.rotateX(playerCameraObject, newRotation.x,  timeToLook).setEase(easeType);
   }
 
   public void LookAtLaterPosition(Vector3 laterPosition, Transform pointToLookAt, float timeToLook) {

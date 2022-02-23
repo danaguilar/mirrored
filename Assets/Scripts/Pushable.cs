@@ -7,26 +7,15 @@ using UnityEngine;
 [RequireComponent(typeof(Targetable))]
 public class Pushable : MonoBehaviour, IInteractable
 {
+  [SerializeField] AudioClip pushingAudio;
   FurnitureVictory furnitureVictory;
 
   void Start() {
     furnitureVictory = GetComponent<FurnitureVictory>();
   }
 
-  private void OnTriggerEnter(Collider other) {
-    if(other.tag != "Floor") {
-      // for future furniture collision
-    }
-  }
-
-   private void OnTriggerExit(Collider other) {
-    if(other.tag != "Floor") {
-      // for future furniture collision
-    } 
-  }
-
   public void Interact(Grabber player) {
-    player.StartPushing();
+    player.StartPushing(pushingAudio);
     transform.parent = player.transform;
   }
 

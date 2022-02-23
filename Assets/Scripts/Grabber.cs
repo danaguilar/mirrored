@@ -18,8 +18,9 @@ public class Grabber : MonoBehaviour
   public PlayerMovement GetPlayerMovement() {
     return playerMovement;
   }
-  public void StartPushing() {
-    playerMovement.SetIsPushing(true);
+
+  public void StartPushing(AudioClip pushingAudioClip) {
+    playerMovement.SetIsPushing(true, pushingAudioClip);
   }
 
   public void StopPushing() {

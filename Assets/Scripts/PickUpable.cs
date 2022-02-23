@@ -10,6 +10,8 @@ public class PickUpable : MonoBehaviour, IInteractable
   ShardVictory shardVictory;
   bool isGoalMet = false;
 
+  AudioSource pickupSFX;
+
   Vector3 initialPosition;
   Vector3 initialScale;
   Quaternion initialRotation;
@@ -20,9 +22,11 @@ public class PickUpable : MonoBehaviour, IInteractable
     initialRotation = transform.rotation;
     
     shardVictory = GetComponent<ShardVictory>();
+    pickupSFX = GetComponent<AudioSource>();
   }
   public void Interact(Grabber player) {
     Transform holdLocation = player.HoldLocation;
+    pickupSFX.Play();
     transform.parent = holdLocation;
     transform.rotation = holdLocation.rotation * Quaternion.Euler(-90, 0, 0);
     transform.position = holdLocation.position;
@@ -37,6 +41,7 @@ public class PickUpable : MonoBehaviour, IInteractable
     }
     else {
       PlayerMovement pMovement = player.GetComponent<PlayerMovement>();
+      gameObject.layer = 0;
       shardVictory.SuccessSequence(pMovement);
       player.ReleaseObject();
     }

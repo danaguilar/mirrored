@@ -15,6 +15,7 @@ public class LevelOneIntroEffects : MonoBehaviour {
   }
 
   void Start() {
+    fadePanel.gameObject.SetActive(true);
     playerMovement.DenyMovement();
     FadeInVolume();
     LeanTween.alpha(fadePanel, 0, timeToFade).setOnComplete(() => InitialMusicAndPlayer());

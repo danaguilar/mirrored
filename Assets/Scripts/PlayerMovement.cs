@@ -9,6 +9,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
+  [SerializeField] AudioSource footstepSFX;
   public float walkingSpeed = 7.5f;
   public float pushSpeed = 5f;
   public float pushLookSpeed = 2.0f;
@@ -127,6 +128,12 @@ public class PlayerMovement : MonoBehaviour
   void OnMove(InputValue value) {
     if(canMove) {
       moveValue = value.Get<Vector2>();
+      if(moveValue.x == 0 && moveValue.y == 0) {
+        footstepSFX.Stop();
+      }
+      else {
+        if(!footstepSFX.isPlaying) footstepSFX.Play();
+      }
     }
   }
 

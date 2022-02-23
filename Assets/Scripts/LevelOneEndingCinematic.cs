@@ -8,12 +8,17 @@ using System;
 public class LevelOneEndingCinematic : EndLevelCinematic
 {
   [SerializeField] RectTransform fadePanel;
-  [SerializeField] float timeToFade = 1f;
   [SerializeField] string nameOfLevelToLoad;
+
+  AudioSource mirrorRestoredSFX;
+
+  void Start() {
+    mirrorRestoredSFX = GetComponent<AudioSource>();
+  }
   public override void SuccessSequence(PlayerMovement playerMovement) {
     playerMovement.DenyMovement();
-    Image panelImage = fadePanel.GetComponent<Image>();
-    LeanTween.alpha(fadePanel, 1, timeToFade).setOnComplete(() => LoadNextLevel(playerMovement));
+    mirrorRestoredSFX.Play();
+    LeanTween.alpha(fadePanel, 1, mirrorRestoredSFX.clip.length).setOnComplete(() => LoadNextLevel(playerMovement));
   }
 
   private void LoadNextLevel(PlayerMovement playerMovement) {

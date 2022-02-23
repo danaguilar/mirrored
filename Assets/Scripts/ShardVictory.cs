@@ -3,9 +3,13 @@ using UnityEngine;
 
 public class ShardVictory : MonoBehaviour, IVictoryCondition
 {
+  [Header("Components")]
   [SerializeField] Transform playerEndingLocation;
   [SerializeField] Transform shardEndingLocation;
   [SerializeField] Transform parentMirror;
+  [Header("Audio")]
+  [SerializeField] AudioClip placeShardClip;
+  [Header("Timings")]
   [SerializeField] float timeToGetInPosition = 1f;
   [SerializeField] float timeToRotateShard = 1f;
   [SerializeField] float timeToPlaceShard = 1f;
@@ -41,12 +45,13 @@ public class ShardVictory : MonoBehaviour, IVictoryCondition
   }
 
   private void PlaceShard() {
+    GetComponent<AudioSource>().PlayOneShot(placeShardClip);
     LeanTween.scale(gameObject, Vector3.one, timeToPlaceShard);
-    LeanTween.move(gameObject, shardEndingLocation, timeToPlaceShard).setOnComplete(() => playerMovement.AllowMovement());
-    DisableShard();
+    LeanTween.move(gameObject, shardEndingLocation, timeToPlaceShard).setOnComplete(() => DisableShard());
   }
 
   private void DisableShard() {
+    playerMovement.AllowMovement();
     gameObject.transform.parent = parentMirror;
     gameObject.GetComponent<Targetable>().enabled = false;
     gameObject.GetComponent<PickUpable>().enabled = false;

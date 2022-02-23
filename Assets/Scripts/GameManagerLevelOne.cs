@@ -13,8 +13,6 @@ public class GameManagerLevelOne : MonoBehaviour
     player = FindObjectOfType<PlayerMovement>();
   }
 
-  // Update is called once per frame
-
   public void turnInShard() {
     shardsCurrentlyTurnedIn++;
     if(shardsCurrentlyTurnedIn >= shardsToTurnIn) {

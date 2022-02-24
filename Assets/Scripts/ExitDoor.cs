@@ -10,24 +10,25 @@ public class ExitDoor : MonoBehaviour, IInteractable {
   [Header("Components")]
   [SerializeField] RectTransform fadePanel;
   [SerializeField] string endingScreenName;
-
-  [Header("Timings")]
-  [SerializeField] float timeToFade;
+  [Header("Audio")]
+  [SerializeField] AudioClip openDoorClip;
 
   void IInteractable.Interact(Grabber player) {
     fadeOut();
   }
 
   private void fadeOut() {
-    LeanTween.alpha(fadePanel, 1, timeToFade).setOnComplete(() => LoadNextLevel());
+    FindObjectOfType<MusicPlayer>().StopMusic();
+    FindObjectOfType<PlayerMovement>().DenyMovement();
+    AudioSource.PlayClipAtPoint(openDoorClip, transform.position);
+    LeanTween.alpha(fadePanel, 1, openDoorClip.length).setOnComplete(() => LoadNextLevel());
   }
 
   private void LoadNextLevel() {
     SceneManager.LoadScene(endingScreenName);
   }
 
-  bool IInteractable.isColliding()
-  { 
+  bool IInteractable.isColliding() { 
     return false;
   }
 

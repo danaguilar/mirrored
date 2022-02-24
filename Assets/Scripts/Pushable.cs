@@ -9,9 +9,11 @@ public class Pushable : MonoBehaviour, IInteractable
 {
   [SerializeField] AudioClip pushingAudio;
   FurnitureVictory furnitureVictory;
+  GameObject room;
 
   void Start() {
     furnitureVictory = GetComponent<FurnitureVictory>();
+    room = FindObjectOfType<RoomIdentifier>().gameObject;
   }
 
   public void Interact(Grabber player) {
@@ -20,7 +22,7 @@ public class Pushable : MonoBehaviour, IInteractable
   }
 
   public void LetGo(Grabber player) {
-    transform.parent = player.room.transform;
+    transform.parent = room.transform;
     player.StopPushing();
     player.ReleaseObject();
     if(furnitureVictory.isWithinWinCondition(transform)) furnitureVictory.SuccessSequence(player.GetPlayerMovement());

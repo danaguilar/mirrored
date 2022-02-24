@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AudioPersister : MonoBehaviour
 {
-  static AudioPersister persister;
+  public static AudioPersister persister;
   void Awake() {
     if(persister == null) {
       persister = this;

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerPersister : MonoBehaviour
 {
-  static PlayerPersister persister;
+  public static PlayerPersister persister;
   void Awake() {
     if(persister == null) {
       persister = this;

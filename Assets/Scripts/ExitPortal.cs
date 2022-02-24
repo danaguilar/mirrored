@@ -2,26 +2,36 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Targetable))]
 public class ExitPortal : MonoBehaviour, IInteractable {
+  [Header("Audio")]
+  [SerializeField] AudioClip splashAudioClip;
+  [Header("Components")]
+  [SerializeField] GameObject clueDisplay;
+  [SerializeField] GameObject basicWaterDispaly;
+  [SerializeField] GameObject fadePanel;
   [Header("Tween Timings")]
   [SerializeField] float timeToMoveAboveTub;
   [SerializeField] float timeToSplash;
   [Header("Next Level Info")]
   [SerializeField] string levelFourName;
   PlayerMovement playerMovement;
+  MusicPlayer musicPlayer;
+
   public void Interact(Grabber player) {
     playerMovement = player.GetPlayerMovement();
     playerMovement.DenyMovement();
     removeCollider();
     positionCameraAboveTub();
-    // load last level
   }
 
   public void setTargetable() {
     gameObject.layer = 8;
+    clueDisplay.SetActive(false);
+    basicWaterDispaly.SetActive(true);
   }
 
   private void removeCollider() {
@@ -36,13 +46,26 @@ public class ExitPortal : MonoBehaviour, IInteractable {
   }
 
   private void moveToSplash() {
-    LeanTween.move(playerMovement.gameObject, new Vector3(playerMovement.transform.position.x, 0.2f, playerMovement.transform.position.z), timeToSplash).setEase(LeanTweenType.easeInExpo)
-      .setOnComplete(() => loadNextLevel());
+    LeanTween.move(playerMovement.gameObject, new Vector3(playerMovement.transform.position.x, 0.1f, playerMovement.transform.position.z), timeToSplash).setEase(LeanTweenType.easeInExpo)
+      .setOnComplete(() => StartCoroutine(loadNextLevel()));
   }
-  private void loadNextLevel() {
-    // Play splash sound
+  private IEnumerator loadNextLevel() {
+    fadePanel.SetActive(true);
+    AudioSource.PlayClipAtPoint(splashAudioClip, playerMovement.transform.position);
+    musicPlayer = FindObjectOfType<MusicPlayer>();
+    musicPlayer.StopMusic();
+    yield return new WaitForSeconds(splashAudioClip.length);
+    UnpersistPlayer();
     SceneManager.LoadScene(levelFourName);
   }
+
+  private void UnpersistPlayer() {
+    PlayerPersister.persister = null;
+    AudioPersister.persister = null;
+    SceneManager.MoveGameObjectToScene(playerMovement.gameObject, SceneManager.GetActiveScene());
+    SceneManager.MoveGameObjectToScene(musicPlayer.gameObject, SceneManager.GetActiveScene());
+  }
+
 
   public bool isColliding() {
     return false;

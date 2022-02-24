@@ -8,23 +8,32 @@ public class GameManagerLevelThree : MonoBehaviour
 
   [Header("Components")]
   RenderTexture clueRenderTexture;
+  
+  [Header("Audio")]
+  [SerializeField] AudioClip scribbleClip;
+
+  [SerializeField] List<AudioClip> audioScribbleClips = new List<AudioClip>();
 
   [Header("Clues")]
   public TextClue activeClue;
+  public AudioClip activeClip;
   [SerializeField] List<TextClue> clueList = new List<TextClue>();
   [SerializeField] MeshRenderer clueCamRenderer;
-  PlayerMovement player;
   ExitPortal exitPortal;
 
   void Start() {
-    player = FindObjectOfType<PlayerMovement>();
     exitPortal = FindObjectOfType<ExitPortal>();
     clueRenderTexture = (RenderTexture)clueCamRenderer.material.mainTexture;
+  }
+
+  public void BeginClues() {
     setupNewClue();
   }
 
   private void setupNewClue() {
-    activeClue = clueList[UnityEngine.Random.Range(0, clueList.Count)];
+    int randomSelection = UnityEngine.Random.Range(0, clueList.Count);
+    activeClue = clueList[randomSelection];
+    activeClip = audioScribbleClips[randomSelection];
     hideAllInactiveClues();
   }
 
@@ -33,7 +42,10 @@ public class GameManagerLevelThree : MonoBehaviour
   }
 
   public void scoreClue() {
+    PlayerMovement player = FindObjectOfType<PlayerMovement>();
+    AudioSource.PlayClipAtPoint(activeClip, player.transform.position);
     clueList.Remove(activeClue);
+    audioScribbleClips.Remove(activeClip);
     if(clueList.Count == 0) {
       exitPortal.setTargetable();
     }

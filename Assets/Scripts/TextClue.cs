@@ -14,6 +14,9 @@ public class TextClue : MonoBehaviour, IVictoryCondition {
   [SerializeField] Transform sinkWater;
   [SerializeField] bool isSink;
 
+  [Header("Audio")]
+  [SerializeField] AudioClip successClip;
+
   [Header("Transition Values")]
   [SerializeField] float playerMovementTransitionTime;
   [SerializeField] float textTransitionTime;
@@ -49,11 +52,12 @@ public class TextClue : MonoBehaviour, IVictoryCondition {
   }
 
   void positionPlayer() {
-    playerMovement.GetComponent<ForceFocus>().LookAt(lookLocation, playerMovementTransitionTime);
+    playerMovement.GetComponent<ForceFocus>().LookAt(lookLocation, playerMovementTransitionTime, LeanTweenType.easeOutQuint);
     LeanTween.move(gameObject, gameObject.transform.position, playerMovementTransitionTime).setOnComplete(() => showTextEffects());
   }
 
   void showTextEffects() {
+    AudioSource.PlayClipAtPoint(successClip, playerMovement.transform.position);
     if(isSink) {
       LeanTween.move(sinkWater.gameObject, new Vector3(sinkWater.position.x,sinkWater.position.y -0.3f ,sinkWater.position.z), textTransitionTime).setOnComplete(() => score());
     }
@@ -62,6 +66,7 @@ public class TextClue : MonoBehaviour, IVictoryCondition {
         .setOnUpdate((float alphaTween) => {
           clueText.color = new Color(clueText.color.r, clueText.color.g, clueText.color.b, alphaTween);
         })
+        .setEase(LeanTweenType.easeOutElastic)
         .setOnComplete(() => score());
     }
   }
@@ -81,10 +86,16 @@ public class TextClue : MonoBehaviour, IVictoryCondition {
   }
 
   private bool playerIsWithinTurnin() {
+    if(playerTransform == null) GetPlayerMovement();
     return isWithinRange(playerTransform.position.x, goalTransform.position.x - positionGrace, goalTransform.position.x + positionGrace, "X: ")
       && isWithinRange(playerTransform.position.z, goalTransform.position.z - positionGrace, goalTransform.position.z + positionGrace, "Z: ")
       && isWithinRange(playerTransform.eulerAngles.y, goalTransform.eulerAngles.y - rotationGrace, goalTransform.eulerAngles.y + rotationGrace, "RotY: ")
       && isWithinRange(mainCameraTranform.eulerAngles.x, goalTransform.eulerAngles.x - rotationGrace, goalTransform.eulerAngles.x + rotationGrace, "Rot X: ");
+  }
+
+  private void GetPlayerMovement() {
+    if(playerMovement == null) playerMovement = FindObjectOfType<PlayerMovement>();
+    playerTransform = playerMovement.transform;
   }
 
   private bool isWithinRange(float testNum, float min, float max, string rangeType) {

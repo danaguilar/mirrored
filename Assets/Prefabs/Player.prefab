@@ -264,7 +264,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -327,13 +327,14 @@ MonoBehaviour:
   footstepSFX: {fileID: 1274845278}
   walkingSpeed: 3
   pushSpeed: 1
-  pushLookSpeed: 0.2
+  pushLookSpeed: 0.1
   jumpSpeed: 8
   gravity: 20
   playerCamera: {fileID: 1861748618574081445}
-  lookSpeed: 0.4
-  lookXLimit: 45
+  lookSpeed: 0.2
+  lookXLimit: 60
   pushLookXMinMax: {x: 10, y: 60}
+  isReverse: 0
   canMove: 1
 --- !u!114 &295305720601724753
 MonoBehaviour:
@@ -396,7 +397,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HoldLocation: {fileID: 553042730}
-  room: {fileID: 0}
   extendedReachPastHoldLocation: 0
   targetedObject: {fileID: 0}
 --- !u!114 &5997916593045144991

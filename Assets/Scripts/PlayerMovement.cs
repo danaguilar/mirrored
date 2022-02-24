@@ -7,20 +7,25 @@ using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(CharacterController))]
 
-public class PlayerMovement : MonoBehaviour
-{
+public class PlayerMovement : MonoBehaviour {
+  [Header("Audio")]
   [SerializeField] AudioSource footstepSFX;
+  [Header("Movement Vars")]
   public float walkingSpeed = 7.5f;
   public float pushSpeed = 5f;
   public float pushLookSpeed = 2.0f;
   public float jumpSpeed = 8.0f;
   public float gravity = 20.0f;
+
+  [Header("Look Vars")]
   public Camera playerCamera;
   public float lookSpeed = 2.0f;
   public float lookXLimit = 45.0f;
   public PhysicsScene physicsScene;
-
   public Vector2 pushLookXMinMax = new Vector2();
+
+  [Header("Reverse Mode")]
+  public bool isReverse;
 
   CharacterController characterController;
   Grabber grabber;
@@ -64,6 +69,7 @@ public class PlayerMovement : MonoBehaviour
   }
 
   public void DenyMovement() {
+    footstepSFX.Stop();
     canMove = false;
     rotationX = 0;
     moveValue = new Vector2();
@@ -136,6 +142,7 @@ public class PlayerMovement : MonoBehaviour
   void OnMove(InputValue value) {
     if(canMove) {
       moveValue = value.Get<Vector2>();
+      if(isReverse) moveValue *= -1;
       if(moveValue.x == 0 && moveValue.y == 0) {
         footstepSFX.Stop();
       }
@@ -148,10 +155,9 @@ public class PlayerMovement : MonoBehaviour
   void OnLook(InputValue value) {
     if(canMove) {
       lookValue = value.Get<Vector2>();
+      if(isReverse) lookValue *= -1;
     }
   }
 
-  void OnStopCam() {
-    camControlsActive = !camControlsActive;
-  }
+  void OnStopCam() { }
 }

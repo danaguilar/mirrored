@@ -7,7 +7,6 @@ public class Grabber : MonoBehaviour
 {
 
   public Transform HoldLocation;
-  public GameObject room;
   [SerializeField] float extendedReachPastHoldLocation;
   float armLength;
   public IInteractable grabbedObject;

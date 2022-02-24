@@ -15,6 +15,7 @@ public class PickUpable : MonoBehaviour, IInteractable
   Vector3 initialPosition;
   Vector3 initialScale;
   Quaternion initialRotation;
+  GameObject room;
 
   void Start() {
     initialPosition = transform.position;
@@ -23,6 +24,7 @@ public class PickUpable : MonoBehaviour, IInteractable
     
     shardVictory = GetComponent<ShardVictory>();
     pickupSFX = GetComponent<AudioSource>();
+    room = FindObjectOfType<RoomIdentifier>().gameObject;
   }
   public void Interact(Grabber player) {
     Transform holdLocation = player.HoldLocation;
@@ -34,8 +36,7 @@ public class PickUpable : MonoBehaviour, IInteractable
 
   public void LetGo(Grabber player) {
     if(!isGoalMet) {
-      Debug.Log($"Grabber game object: {player}", player);
-      transform.parent = player.room.transform;
+      transform.parent = room.transform;
       ResetLocation();
       player.ReleaseObject();
     }

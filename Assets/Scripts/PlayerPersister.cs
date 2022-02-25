@@ -14,4 +14,8 @@ public class PlayerPersister : MonoBehaviour
       Destroy(gameObject);
     }
   }
+
+  public static PlayerMovement GetPlayerMovement() {
+    return persister.GetComponent<PlayerMovement>();
+  }
 }

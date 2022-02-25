@@ -14,13 +14,19 @@ public class MusicPlayer : MonoBehaviour {
   }
 
   public void StartMusic() {
+    if(audioSource == null) audioSource = GetComponent<AudioSource>();
+    audioSource.clip = initialMusic;
     audioSource.Play();
     keepPlaying = true;
   }
 
+  public void SetNewMusicClips(AudioClip initial, AudioClip looped) {
+    initialMusic = initial;
+    loopedMusic = looped;
+  }
+
   void Start() {
     audioSource = GetComponent<AudioSource>();
-    audioSource.clip = initialMusic;
   }
 
   void Update() {

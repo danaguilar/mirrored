@@ -15,7 +15,7 @@ public class GameManagerLevelTwo : MonoBehaviour
   public void scoreFurniture() {
     furnitureScore++;
     if(furnitureScore >= furnitureToMove) {
-      endLevelCinematic.SuccessSequence(FindObjectOfType<PlayerMovement>());
+      endLevelCinematic.SuccessSequence(PlayerPersister.GetPlayerMovement());
     }
   }
 }

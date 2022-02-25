@@ -10,12 +10,9 @@ public class LevelOneIntroEffects : MonoBehaviour {
   PlayerMovement playerMovement;
   MusicPlayer musicPlayer;
 
-  void Awake() {
-    playerMovement = FindObjectOfType<PlayerMovement>();
-    musicPlayer = FindObjectOfType<MusicPlayer>();
-  }
-
   void Start() {
+    playerMovement = PlayerPersister.GetPlayerMovement();
+    musicPlayer = FindObjectOfType<MusicPlayer>();
     fadePanel.gameObject.SetActive(true);
     playerMovement.DenyMovement();
     FadeInVolume();

@@ -42,7 +42,7 @@ public class GameManagerLevelThree : MonoBehaviour
   }
 
   public void scoreClue() {
-    PlayerMovement player = FindObjectOfType<PlayerMovement>();
+    PlayerMovement player = PlayerPersister.GetPlayerMovement();
     AudioSource.PlayClipAtPoint(activeClip, player.transform.position);
     clueList.Remove(activeClue);
     audioScribbleClips.Remove(activeClip);

@@ -61,9 +61,7 @@ public class ExitPortal : MonoBehaviour, IInteractable {
 
   private void UnpersistPlayer() {
     PlayerPersister.persister = null;
-    AudioPersister.persister = null;
     SceneManager.MoveGameObjectToScene(playerMovement.gameObject, SceneManager.GetActiveScene());
-    SceneManager.MoveGameObjectToScene(musicPlayer.gameObject, SceneManager.GetActiveScene());
   }
 
 

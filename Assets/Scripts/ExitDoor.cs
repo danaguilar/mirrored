@@ -19,7 +19,7 @@ public class ExitDoor : MonoBehaviour, IInteractable {
 
   private void fadeOut() {
     FindObjectOfType<MusicPlayer>().StopMusic();
-    FindObjectOfType<PlayerMovement>().DenyMovement();
+    PlayerPersister.GetPlayerMovement().DenyMovement();
     AudioSource.PlayClipAtPoint(openDoorClip, transform.position);
     LeanTween.alpha(fadePanel, 1, openDoorClip.length).setOnComplete(() => LoadNextLevel());
   }

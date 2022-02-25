@@ -34,7 +34,7 @@ public class TextClue : MonoBehaviour, IVictoryCondition {
   bool alreadyFired = false;
 
   void Start() {
-    playerMovement = FindObjectOfType<PlayerMovement>();
+    playerMovement = PlayerPersister.GetPlayerMovement();
     gameManager = FindObjectOfType<GameManagerLevelThree>();
     playerTransform = playerMovement.transform;
     mainCameraTranform = clueCamera.transform;
@@ -94,7 +94,7 @@ public class TextClue : MonoBehaviour, IVictoryCondition {
   }
 
   private void GetPlayerMovement() {
-    if(playerMovement == null) playerMovement = FindObjectOfType<PlayerMovement>();
+    if(playerMovement == null) playerMovement = PlayerPersister.GetPlayerMovement();
     playerTransform = playerMovement.transform;
   }
 

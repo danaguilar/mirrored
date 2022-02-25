@@ -10,9 +10,8 @@ public class PuzzleTwoIntroSequence : MonoBehaviour, IVictoryCondition
   [SerializeField] float timeToFade = 1f;
 
   PlayerMovement playerMovement;
-  // Start is called before the first frame update
   void Start() {
-    playerMovement = FindObjectOfType<PlayerMovement>();
+    playerMovement = PlayerPersister.GetPlayerMovement();
     SuccessSequence(playerMovement);
     
   }

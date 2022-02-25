@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1923,12 +1923,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 983646656}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d69b78345664214697078e00103b561, type: 3}
+  m_Script: {fileID: 11500000, guid: 9a8aef6b4a5212e45a43ea4c93de2936, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   fadePanel: {fileID: 1989573643}
+  initalReversed: {fileID: 8300000, guid: 9b6c961a0658f4f418eb3ef68563cec4, type: 3}
+  loopedReversed: {fileID: 8300000, guid: 9011d9421e32d684da7c172583030460, type: 3}
   timeToFade: 2
-  setReversed: 1
 --- !u!4 &983646658
 Transform:
   m_ObjectHideFlags: 0
@@ -2507,11 +2508,11 @@ PrefabInstance:
     - target: {fileID: 5830058924926509299, guid: 5431cf16bb3905543b58b93f6bb52a94, type: 3}
       propertyPath: loopedMusic
       value: 
-      objectReference: {fileID: 8300000, guid: 9011d9421e32d684da7c172583030460, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 5830058924926509299, guid: 5431cf16bb3905543b58b93f6bb52a94, type: 3}
       propertyPath: initialMusic
       value: 
-      objectReference: {fileID: 8300000, guid: 9b6c961a0658f4f418eb3ef68563cec4, type: 3}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5431cf16bb3905543b58b93f6bb52a94, type: 3}
 --- !u!1 &1348018639
